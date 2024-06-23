@@ -1,1 +1,1 @@
-export const baseUrl='http://localhost:4003'
+export const baseUrl='https://jobquest-backend-1.onrender.com'
