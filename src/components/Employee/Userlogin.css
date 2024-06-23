@@ -1,0 +1,10 @@
+.body{
+    background: linear-gradient(rgba(187, 187, 200, 0.679),rgba(202, 152, 152, 0.474));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+  }
+  button{
+    background: linear-gradient(rgba(54, 51, 51, 0.627),rgba(6, 6, 81, 0.381));
+  }

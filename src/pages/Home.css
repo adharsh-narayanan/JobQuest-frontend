@@ -1,0 +1,217 @@
+.banner {
+   background: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+   background-position: center;
+   background-size: cover;
+}
+
+.banner-div {
+   background: rgba(0, 0, 0, 0.453);
+   background-size: cover;
+   height: 500px;
+
+}
+
+.banner-text {
+   
+   color: rgb(255, 255, 255);
+   font-size: 80px;
+   font-weight: 700;
+   background: transparent;
+   overflow-y: hidden;
+}
+
+.selectuser {
+   padding: 50px;
+}
+
+.post {
+   background: url('https://i.pinimg.com/564x/aa/44/fb/aa44fba251dc6b8db2bda8233132f9a4.jpg');
+   background-position: center;
+   background-size: cover;
+}
+
+.post-text {
+   background: rgba(227, 0, 0, 0.453);
+   background-size: contain;
+   height: 250px;
+}
+
+.find {
+   background: url('https://i.pinimg.com/564x/8e/ba/69/8eba69a2e8adbb7631eecef92f48e184.jpg');
+   background-position: center;
+   background-size: cover;
+}
+
+.find-text {
+   background: rgba(0, 83, 227, 0.411);
+   background-size: contain;
+   height: 250px;
+}
+
+.home-card {
+   background: linear-gradient(rgba(187, 187, 200, 0.679), rgba(202, 152, 152, 0.474));
+}
+
+.button1 {
+   color: #ffffff;
+   background-color: rgba(99, 76, 245, 0.923);
+   padding: 7px 10px;
+   font-size: 1rem;
+   font-weight: 500;
+   width: 100px;
+   border: none;
+
+
+}
+
+.button1:hover {
+   color: rgb(255, 255, 255);
+   background: #6cbc8d;
+}
+
+.aboutdata {
+   border-bottom: grey 1px solid;
+
+}
+
+.banner-2 img {
+   height: 500px;
+   width: 100%;
+   object-position: center;
+}
+
+.banner-2 {
+   position: relative;
+}
+
+.banner2-text {
+   width: 35%;
+   position: absolute;
+   color: rgb(255, 255, 242);
+   top: 50%;
+   left: 10%;
+   font-size: 40px;
+   font-weight: 800;
+   background: rgba(0, 0, 0, 0.083)
+}
+
+
+
+.button2 {
+   position: absolute;
+   top: 80%;
+   left: 10%;
+   padding: 7px 20px;
+   width: 200px;
+   transition: 0.5s;
+   background-color: rgba(99, 76, 245, 0.923);
+   font-size: 1.2rem;
+   font-weight: 500;
+   border: none;
+   color: rgb(255, 255, 255);
+}
+
+.button2:hover {
+   color: rgb(255, 255, 255);
+   background: #6cbc8d;
+}
+
+.banner3 {
+   background: linear-gradient(rgba(187, 187, 200, 0.679), rgba(202, 152, 152, 0.474));
+
+}
+
+.button3 {
+   top: 60%;
+   padding: 7px 20px;
+   width: 200px;
+   transition: 0.5s;
+   background-color: rgba(99, 76, 245, 0.923);
+   font-size: 1.2rem;
+   font-weight: 500;
+   border: none;
+   color: rgb(255, 255, 255);
+}
+
+.button3:hover {
+   color: rgb(255, 255, 255);
+   background: #6cbc8d;
+}
+
+@media (max-width: 860px) {
+   .banner-text {
+   
+      font-size: 60px;
+   }
+
+   .selectuser {
+      top: 35%;
+   }
+}
+
+
+
+@media (max-width:960px) {
+   .banner-text {     
+      font-size: 60px;
+   }
+
+   .selectuser {
+      top: 30%;
+   }
+
+   .banner2-text {
+      width: 40%;
+      top: 50%;
+      left: 15%;
+   }
+
+   .button2 {
+      top: 80%;
+      left: 15%;
+   }
+
+
+}
+
+@media (max-width: 480px) {
+
+
+
+  
+
+   .banner-text {
+      top: 10%;
+      left: 45%;
+      font-size: 40px;
+   }
+
+   .selectuser {
+      position: relative;
+   }
+
+   .home-card {
+      margin-top: 50px;
+   }
+
+   .banner2-text {
+      width: 50%;
+      top: 50%;
+   }
+
+   .button2 {
+      top: 80%
+   }
+
+   .hire-text {
+      top: 20%;
+      width: 50%;
+
+   }
+
+   .button3 {
+      top: 95%;
+
+   }
+
+}

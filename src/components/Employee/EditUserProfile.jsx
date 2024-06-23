@@ -1,0 +1,263 @@
+import React, { useContext, useEffect } from 'react'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { baseUrl } from '../../services/baseUrl';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { updateProfileApi } from '../../services/Api';
+import { userProfileContext } from '../../context/contextApi';
+
+
+
+function EditUserProfile({data}) {
+  //context
+const{seteditUserProfile}=useContext(userProfileContext)
+
+  const [update, setupdate] = useState(false)
+  const [show, setShow] = useState(false);
+  const [userData, setUserData] = useState({
+    id:"",
+    username:"",
+    email:"",
+    position:"",
+    phone:"",
+    country:"",
+    city:"",
+    postCode:"",
+    gender:"",
+    dateOfBirth:"",
+    linkdin:"",
+    resume: "",
+    userImage: ""
+  })
+ // console.log(userData);
+
+  const [profileImage, setProfileImage] =useState("")
+  const[cv,setCv]=useState("")
+  const [preview, setpreview] = useState("")
+
+  //to get data when page loads or changes
+  useEffect(() => {
+  setUserData({...userData,
+    id: data._id,
+    username:data.username,
+    email:data.email,
+    position:data.position,
+    phone:data.phone,
+    country:data.country,
+    city:data.city,
+    postCode:data.postCode,
+    gender:data.gender,
+    dateOfBirth:data.dateOfBirth,
+    linkdin:data.linkdin,
+    resume:data.resume,
+  })
+  setProfileImage(data.userImage)
+  setCv(data.resume)
+  },[data])
+
+  //to display profile image
+  useEffect(()=>{
+    userData.userImage?setpreview(URL.createObjectURL(userData.userImage)):setpreview("")
+  },[userData.userImage])
+
+  const updateProfile=async(e)=>{
+    e.preventDefault()
+    const{id,username,email,position,phone,country,city,postCode,gender,dateOfBirth,linkdin,resume,userImage}=userData
+
+    if(!username||!email||!position||!phone||!country||!city||!postCode||!gender||!dateOfBirth||!linkdin||!resume ||!userImage){
+      toast.warning("completely fill profile")
+
+    }
+    else{
+      const reqBody=new FormData()
+
+    reqBody.append("username",username)
+    reqBody.append("email",email)
+    reqBody.append("position",position)
+    reqBody.append("phone",phone)
+    reqBody.append("country",country)
+    reqBody.append("city",city)
+    reqBody.append("postCode",postCode)
+    reqBody.append("gender",gender)
+    reqBody.append("dateOfBirth",dateOfBirth)
+    reqBody.append("linkdin",linkdin)
+    preview ? reqBody.append("userImage", userImage) : reqBody.append("userImage", profileImage)
+    reqBody.append("resume",resume)
+
+
+    const token =sessionStorage.getItem('userToken')
+    if(preview||resume){
+      const reqHeader = {
+        'content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${token}`
+      }
+      const result= await updateProfileApi(id,reqBody,reqHeader)
+      console.log(result);
+      if(result.status==200){
+        toast.success('Profile Updated Succesfully')
+        sessionStorage.setItem("existingUser", JSON.stringify(result.data))
+        setupdate(true)
+        seteditUserProfile(result.data)
+
+        setTimeout(() => {
+          handleClose()
+
+        }, 3000)
+
+      }
+      else {
+        //console.log(result.response)
+        toast.error(result.response.data)
+
+      }
+    
+    }else{
+      const reqHeader = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+      const result= await updateProfileApi(id,reqBody,reqHeader)
+      console.log(result);
+      if(result.status==200){
+        toast.success('Profile Updated Succesfully')
+        sessionStorage.setItem("existingUser", JSON.stringify(result.data))
+        setupdate(true)
+        seteditUserProfile(result.data)
+        setTimeout(() => {
+          handleClose()
+
+        }, 3000)
+
+      }
+      else {
+        //console.log(result.response)
+        toast.error(result.response.data)
+
+      }
+    }
+    }
+
+    }
+
+    
+  
+
+
+
+
+  //modal
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (
+    <>
+      <div onClick={handleShow}>
+        <FontAwesomeIcon className='' icon={faPenToSquare} size='xl' />
+      </div>
+
+
+      <Modal show={show} onHide={handleClose} size='lg'>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className=' w-100'>
+            <div className='row d-flex justify-content-center align-items-center' >
+
+              <div className='d-flex justify-content-center align-items-center mb-3'>
+                <label htmlFor="profileImage">
+                  <input style={{ display: "none" }} type="file" id='profileImage'   onChange={(e)=>setUserData({...userData,userImage:e.target.files[0]})} />
+                {
+                  profileImage==""?  <img src={preview?preview:"https://www.translitescaffolding.com/wp-content/uploads/2013/06/user-avatar.png"} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} />:
+
+                  <img src={preview ? preview :`${baseUrl}/uploads/user/${profileImage}`} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} />
+                  }
+                
+                </label>
+              </div>
+
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">Full Name
+                  <input type="text" className='form-control' id='name' value={userData.username} onChange={(e)=>setUserData({...userData,username:e.target.value})}/>
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">Position
+                  <input type="text" className='form-control' id='name' value={userData.position} onChange={(e)=>setUserData({...userData,position:e.target.value})}/>
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">email
+                  <input type="text" className='form-control' id='name'  value={userData.email}  onChange={(e)=>setUserData({...userData,email:e.target.value})} />
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">Phone
+                  <input type="text" className='form-control' id='name'  value={userData.phone} onChange={(e)=>setUserData({...userData,phone:e.target.value})} />
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">Country
+                <input id="country" name="country" class="form-control"  value={userData.country} onChange={(e)=>setUserData({...userData,country:e.target.value})}/>
+
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">City
+                  <input type="text" className='form-control' id='name'  value={userData.city} onChange={(e)=>setUserData({...userData,city:e.target.value})} />
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">post code
+                  <input type="text" className='form-control' id='name'  value={userData.postCode}  onChange={(e)=>setUserData({...userData,postCode:e.target.value})} />
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">Gender
+                  <select id="gender" name="gender" className='form-control'  value={userData.gender} onChange={(e)=>setUserData({...userData,gender:e.target.value})}>
+                    <option value="">--</option>
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                    <option value="O">Other</option>
+                  </select>
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">Date of Birth
+                  <input type="date" className='form-control' id='name'  value={userData.dateOfBirth}  onChange={(e)=>setUserData({...userData,dateOfBirth:e.target.value})}/>
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">Linkdin Profile
+                  <input type="text" className='form-control' id='name'  value={userData.linkdin}  onChange={(e)=>setUserData({...userData,linkdin:e.target.value})} />
+                </label>
+              </div>
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name">Resume 
+                <input type="file" className='form-control' id='name' onChange={(e)=>setUserData({...userData,resume:e.target.files[0]})} />
+                <span>{cv?cv:'upload resume'}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={(e)=>updateProfile(e)}>
+            Update
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <ToastContainer theme='colored' position='top-center' autoClose={2000} />
+
+    </>
+  )
+}
+
+export default EditUserProfile
