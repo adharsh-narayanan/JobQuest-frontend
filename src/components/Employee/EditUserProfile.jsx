@@ -101,7 +101,7 @@ const{seteditUserProfile}=useContext(userProfileContext)
         toast.success('Profile Updated Succesfully')
         sessionStorage.setItem("existingUser", JSON.stringify(result.data))
         setupdate(true)
-        seteditUserProfile(result.data)
+        seteditUserProfile(true)
 
         setTimeout(() => {
           handleClose()
@@ -126,7 +126,7 @@ const{seteditUserProfile}=useContext(userProfileContext)
         toast.success('Profile Updated Succesfully')
         sessionStorage.setItem("existingUser", JSON.stringify(result.data))
         setupdate(true)
-        seteditUserProfile(result.data)
+        seteditUserProfile(true)
         setTimeout(() => {
           handleClose()
 

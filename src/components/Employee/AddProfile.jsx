@@ -5,9 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { addUserProfileApi, } from '../../services/Api';
 import { useNavigate } from 'react-router-dom';
 import UserHeader from './UserHeader';
+import { userProfileContext } from '../../context/contextApi';
 
 function AddProfile() {
     const navigate = useNavigate()
+    const{seteditUserProfile}=useContext(userProfileContext)
+
 
     const [userData, setUserData] = useState({
         username: "",
@@ -41,6 +44,9 @@ function AddProfile() {
     useEffect(() => {
         userData.userImage ? setpreview(URL.createObjectURL(userData.userImage)) : setpreview("")
     }, [userData.userImage])
+
+
+    //function to add profile
 
     const addUserProfile = async (e) => {
         e.preventDefault()
@@ -77,6 +83,8 @@ function AddProfile() {
             console.log(result);
             if (result.status == 200) {
                 toast.success('Profile Updated Succesfully')
+                seteditUserProfile(true)
+                
                 setTimeout(() => {
                     navigate('/user-dashboard')
 

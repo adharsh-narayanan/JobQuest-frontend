@@ -39,7 +39,7 @@ function contextApi({ children }) {
   const [addjobresponse, setaddjobresponse] = useState(false)
   const [editJobResponse, setEditJobResponse] = useState({})
   const [AuthoriseToken, setauthoriseToken] = useState(true)
-  const [editUserProfile, seteditUserProfile] = useState({})
+  const [editUserProfile, seteditUserProfile] = useState(false)
   const [savedJob, setSavedJob] = useState(false)
   const [appliedJob, setAppliedJob] = useState(false)
   const [savedCandidate, setSavedCandidate] = useState(false)

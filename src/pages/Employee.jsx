@@ -15,16 +15,18 @@ import FooterFile from '../components/General/FooterFile';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import PasswordChange from '../components/Employee/PasswordChange';
-import { passwordChangeContext } from '../context/contextApi';
+import { passwordChangeContext, userProfileContext } from '../context/contextApi';
 
 
 function Employee() {
   const [currentPage, setCurrentPage] = useState("profile")
   const{ischangePassword,setIsChangePassword}=useContext(passwordChangeContext)
+  const{editUserProfile, seteditUserProfile}=useContext(userProfileContext)
 useEffect(()=>{
   setIsChangePassword(false)
+  seteditUserProfile(false)
   setCurrentPage("profile")
-},[ischangePassword])
+},[ischangePassword,editUserProfile])
 
   //to make it responsive
   const screenSize = useMediaQuery({ minWidth: 1024 })
