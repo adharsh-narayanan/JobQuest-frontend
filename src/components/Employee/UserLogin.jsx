@@ -172,6 +172,8 @@ function UserLogin({ register }) {
                         {SignUp && <div className='mb-4 '>
                             <TextField
                                 label="Username" name='username'
+                                value={userData.username||""}
+
                                 id="outlined-start-adornment"
                                 sx={{ width: '100%' }}
                                 InputProps={{
@@ -189,6 +191,7 @@ function UserLogin({ register }) {
                             <TextField
                                 label="E-mail" name='email'
                                 id="outlined-start-adornment"
+                                value={userData.email||""}  
                                 sx={{ width: '100%' }}
                                 InputProps={{
                                     startAdornment: <InputAdornment position="start"><MailOutlineRoundedIcon /></InputAdornment>,
@@ -203,6 +206,7 @@ function UserLogin({ register }) {
                             <TextField
                                 type="password"
                                 label="Password"
+                                value={userData.password||""}
                                 name='password'
                                 id="outlined-start-adornment"
                                 sx={{ width: '100%' }}
@@ -220,6 +224,8 @@ function UserLogin({ register }) {
                             <TextField
                                 type="password" label="Confirm password" name='confirmPassword'
                                 id="outlined-start-adornment"
+                                value={userData.cpassword||""}
+
                                 sx={{ width: '100%' }}
                                 InputProps={{
                                     startAdornment: <InputAdornment position="start"><HttpsOutlinedIcon /></InputAdornment>,
