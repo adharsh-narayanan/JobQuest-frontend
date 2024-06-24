@@ -105,6 +105,8 @@ function Jobcards({ jobs }) {
             else {
                 toast.error(result.response.data)
             }
+        }else{
+            toast.warning('please login to save job')
         }
     }
 
@@ -154,12 +156,7 @@ function Jobcards({ jobs }) {
             }
         }
         else {
-            toast.info('please complete your profile to apply job')
-            setTimeout(() => {
-                navigate('/user/add-profile')
-
-
-            }, 2000);
+            toast.info('please complete your profile to apply job')         
         }
 
     }
