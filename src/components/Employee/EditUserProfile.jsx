@@ -68,7 +68,7 @@ const{seteditUserProfile}=useContext(userProfileContext)
     e.preventDefault()
     const{id,username,email,position,phone,country,city,postCode,gender,dateOfBirth,linkdin,resume,userImage}=userData
 
-    if(!username||!email||!position||!phone||!country||!city||!postCode||!gender||!dateOfBirth||!linkdin||!resume ||!userImage){
+    if(!username||!email||!position||!phone||!country||!city||!postCode||!gender||!dateOfBirth||!linkdin){
       toast.warning("completely fill profile")
 
     }
@@ -166,58 +166,77 @@ const{seteditUserProfile}=useContext(userProfileContext)
         <Modal.Body>
           <div className=' w-100'>
             <div className='row d-flex justify-content-center align-items-center' >
+            <div><span className='text-danger justify-content-end d-flex p-2'>* required fields</span></div>
 
-              <div className='d-flex justify-content-center align-items-center mb-3'>
-                <label htmlFor="profileImage">
-                  <input style={{ display: "none" }} type="file" id='profileImage'   onChange={(e)=>setUserData({...userData,userImage:e.target.files[0]})} />
-                {
-                  profileImage==""?  <img src={preview?preview:"https://www.translitescaffolding.com/wp-content/uploads/2013/06/user-avatar.png"} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} />:
 
-                  <img src={preview ? preview :`${baseUrl}/uploads/user/${profileImage}`} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} />
-                  }
-                
-                </label>
-              </div>
+             <div>
+                <div className='d-flex justify-content-center align-items-center mb-3'>               
+                  <label htmlFor="profileImage">
+                    
+                    
+                    <input style={{ display: "none" }} type="file" id='profileImage'  
+                     onChange={(e)=>setUserData({...userData,userImage:e.target.files[0]})} />
+                     
+                  {
+                    profileImage==""?  <img src={preview?preview:"https://www.translitescaffolding.com/wp-content/uploads/2013/06/user-avatar.png"} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} />:
+  
+                    <img src={preview ? preview :`${baseUrl}/uploads/user/${profileImage}`} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} /> 
+                    }
+  
+                 
+                  </label>
+                </div>
+                <p className=' d-flex justify-content-center align-items-center mb-2'> <span className='text-danger'>*</span>Profile image </p>
+
+             </div>
 
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Full Name
-                  <input type="text" className='form-control' id='name' value={userData.username} onChange={(e)=>setUserData({...userData,username:e.target.value})}/>
+                <label className='w-100' htmlFor="name"> <span className='text-danger'>*</span>Full Name 
+                  <input type="text" className='form-control' id='name' value={userData.username}
+                   onChange={(e)=>setUserData({...userData,username:e.target.value})}/>
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Position
-                  <input type="text" className='form-control' id='name' value={userData.position} onChange={(e)=>setUserData({...userData,position:e.target.value})}/>
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Position
+                  <input type="text" className='form-control' id='name' value={userData.position}
+                   onChange={(e)=>setUserData({...userData,position:e.target.value})}/>
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">email
-                  <input type="text" className='form-control' id='name'  value={userData.email}  onChange={(e)=>setUserData({...userData,email:e.target.value})} />
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>email
+                  <input type="text" className='form-control' id='name'  value={userData.email}  
+                  onChange={(e)=>setUserData({...userData,email:e.target.value})} />
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Phone
-                  <input type="text" className='form-control' id='name'  value={userData.phone} onChange={(e)=>setUserData({...userData,phone:e.target.value})} />
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Phone
+                  <input type="text" className='form-control' id='name'  value={userData.phone}
+                   onChange={(e)=>setUserData({...userData,phone:e.target.value})} />
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Country
-                <input id="country" name="country" class="form-control"  value={userData.country} onChange={(e)=>setUserData({...userData,country:e.target.value})}/>
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Country
+                <input id="country" name="country" class="form-control"  value={userData.country}
+                 onChange={(e)=>setUserData({...userData,country:e.target.value})}/>
 
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">City
-                  <input type="text" className='form-control' id='name'  value={userData.city} onChange={(e)=>setUserData({...userData,city:e.target.value})} />
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>City
+                  <input type="text" className='form-control' id='name'  value={userData.city} 
+                  onChange={(e)=>setUserData({...userData,city:e.target.value})} />
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
                 <label className='w-100' htmlFor="name">post code
-                  <input type="text" className='form-control' id='name'  value={userData.postCode}  onChange={(e)=>setUserData({...userData,postCode:e.target.value})} />
+                  <input type="text" className='form-control' id='name'  value={userData.postCode} 
+                   onChange={(e)=>setUserData({...userData,postCode:e.target.value})} />
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Gender
-                  <select id="gender" name="gender" className='form-control'  value={userData.gender} onChange={(e)=>setUserData({...userData,gender:e.target.value})}>
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Gender
+                  <select id="gender" name="gender" className='form-control'  value={userData.gender} 
+                  onChange={(e)=>setUserData({...userData,gender:e.target.value})}>
                     <option value="">--</option>
                     <option value="F">Female</option>
                     <option value="M">Male</option>
@@ -226,22 +245,26 @@ const{seteditUserProfile}=useContext(userProfileContext)
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Date of Birth
-                  <input type="date" className='form-control' id='name'  value={userData.dateOfBirth}  onChange={(e)=>setUserData({...userData,dateOfBirth:e.target.value})}/>
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Date of Birth
+                  <input type="date" className='form-control' id='name'  value={userData.dateOfBirth} 
+                   onChange={(e)=>setUserData({...userData,dateOfBirth:e.target.value})}/>
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
                 <label className='w-100' htmlFor="name">Linkdin Profile
-                  <input type="text" className='form-control' id='name'  value={userData.linkdin}  onChange={(e)=>setUserData({...userData,linkdin:e.target.value})} />
+                  <input type="text" className='form-control' id='name'  value={userData.linkdin}  
+                  onChange={(e)=>setUserData({...userData,linkdin:e.target.value})} />
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Resume 
-                <input type="file" className='form-control' id='name' onChange={(e)=>setUserData({...userData,resume:e.target.files[0]})} />
-                <span>{cv?cv:'upload resume'}</span>
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Resume 
+                <input type="file" className='form-control' id='name' 
+                onChange={(e)=>setUserData({...userData,resume:e.target.files[0]})} />
+                <span>{cv?cv:'upload resume in pdf format '}</span>
                 </label>
               </div>
             </div>
+            
           </div>
 
         </Modal.Body>

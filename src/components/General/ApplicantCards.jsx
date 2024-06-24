@@ -31,7 +31,7 @@ function ApplicantCards({ candidate }) {
         userImage: "",
 
     })
-    const { setSavedCandidate}=useContext(saveCandidateContext)
+    const { setSavedCandidate } = useContext(saveCandidateContext)
 
     useEffect(() => {
         if (sessionStorage.getItem('token')) {
@@ -120,7 +120,7 @@ function ApplicantCards({ candidate }) {
     return (
 
         <>
-            <div className='m-3 border p-3 shadow' style={{ backgroundColor: 'white', borderRadius: '10px' ,minHeightheight:"500px"}}>
+            <div className='m-3 border p-3 shadow' style={{ backgroundColor: 'white', borderRadius: '10px', minHeightheight: "500px" }}>
                 <div className='text-center mb-3'>
                     <img
                         src={candidate.userImage ? `${baseUrl}/uploads/user/${candidate.userImage}` : ""} alt='User Avatar'
@@ -156,7 +156,7 @@ function ApplicantCards({ candidate }) {
                     <div className='col-6 mb-2'>
                         <h6 className=''>LinkedIn:</h6>
 
-                        <a href={url} target='_blank' style={{ fontSize: '1rem', color: 'blue', textDecoration: "none" , wordBreak: 'break-all' }} className=''>  <FontAwesomeIcon style={{ cursor: "pointer" }} className='me-2' size='md' icon={faLinkedin} />{candidate.linkdin}</a>
+                        <a href={url} target='_blank' style={{ fontSize: '1rem', color: 'blue', textDecoration: "none", wordBreak: 'break-all' }} className=''>  <FontAwesomeIcon style={{ cursor: "pointer" }} className='me-2' size='md' icon={faLinkedin} />{candidate.linkdin}</a>
 
                     </div>
                 </div>

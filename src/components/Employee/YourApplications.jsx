@@ -47,7 +47,7 @@ function YourApplications() {
       const result = await getAppliedJobsApi(reqHeader)
       if (result.status == 200) {
         setjobs(result.data)
-        console.log(result.data);
+       // console.log(result.data);
       } else {
         console.log(result.response.data);
       }
@@ -55,7 +55,7 @@ function YourApplications() {
 
 
   }
-  console.log(jobs);
+  //console.log(jobs);
   //to view job
   const ViewJob = (id) => {
     navigate(`/view-job/${id}`)

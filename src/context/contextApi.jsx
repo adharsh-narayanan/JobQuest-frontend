@@ -29,18 +29,22 @@ export const applyJobContext = createContext()
 export const saveCandidateContext = createContext()
 
 //context for admin verification
-export const verifyAdminContext=createContext()
+export const verifyAdminContext = createContext()
+
+//context for password change
+export const passwordChangeContext = createContext()
 
 function contextApi({ children }) {
   const [editResponse, setEditResponse] = useState(null)
-  const [addjobresponse, setaddjobresponse] = useState({})
+  const [addjobresponse, setaddjobresponse] = useState(false)
   const [editJobResponse, setEditJobResponse] = useState({})
   const [AuthoriseToken, setauthoriseToken] = useState(true)
   const [editUserProfile, seteditUserProfile] = useState({})
   const [savedJob, setSavedJob] = useState(false)
   const [appliedJob, setAppliedJob] = useState(false)
   const [savedCandidate, setSavedCandidate] = useState(false)
-  const[verificationstatus,setVerificationstatus]=useState(false)
+  const [verificationstatus, setVerificationstatus] = useState(false)
+  const [ischangePassword, setIsChangePassword] = useState(false)
 
   return (
     <editAdminContext.Provider value={{ editResponse, setEditResponse }}>
@@ -50,12 +54,14 @@ function contextApi({ children }) {
             <userProfileContext.Provider value={{ editUserProfile, seteditUserProfile }}>
               <savedJobContext.Provider value={{ savedJob, setSavedJob }}>
                 <applyJobContext.Provider value={{ appliedJob, setAppliedJob }}>
-                  <saveCandidateContext.Provider value={{savedCandidate, setSavedCandidate}}>
-<verifyAdminContext.Provider value={{verificationstatus,setVerificationstatus}} >
-  
-                      {children}
-  
-</verifyAdminContext.Provider>
+                  <saveCandidateContext.Provider value={{ savedCandidate, setSavedCandidate }}>
+                    <verifyAdminContext.Provider value={{ verificationstatus, setVerificationstatus }} >
+                      <passwordChangeContext.Provider value={{ischangePassword, setIsChangePassword}}>
+
+                        {children}
+
+                      </passwordChangeContext.Provider>
+                    </verifyAdminContext.Provider>
                   </saveCandidateContext.Provider>
                 </applyJobContext.Provider>
               </savedJobContext.Provider>

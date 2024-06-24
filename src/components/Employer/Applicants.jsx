@@ -6,8 +6,9 @@ import { baseUrl } from '../../services/baseUrl'
 import { toast } from 'react-toastify'
 import AdminHeader from './AdminHeader'
 import Pagination from 'react-bootstrap/Pagination';
-
-
+import { getAJobApi, getCandidatesApi } from '../../services/Api'
+import { faBookmark,  faClock,  faIndianRupee, faLocationDot, faSuitcase } from '@fortawesome/free-solid-svg-icons';
+faClock
 
 function Applicants() {
     const [jobData, setJobData] = useState([])

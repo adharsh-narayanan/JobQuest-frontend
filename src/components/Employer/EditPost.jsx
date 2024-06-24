@@ -123,17 +123,19 @@ function EditPost({ job }) {
                 </Modal.Header>
                 <Modal.Body>
                     <div className=' w-100'>
+                    <div className='mb-3'><span className='text-danger '>*Required</span></div>
+
                         <div className='p-4 border shadow border-secondary'>
                             <div className='row d-flex justify-content-center align-items-center' >
 
 
                                 <div className='col-md-6 mb-3 '>
-                                    <label className='w-100' htmlFor="name">Job Title
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>Job Title
                                         <input type="text" placeholder='Enter title' className='form-control mt-2' id='name' value={jobData.title} onChange={(e) => { setJobData({ ...jobData, title: e.target.value }) }} />
                                     </label>
                                 </div>
                                 <div className='col-md-6 mb-3 '>
-                                    <label className='w-100' htmlFor="name">Job category
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>Job category
                                         <select className='form-control outline-info' type="text" placeholder='category' value={jobData.category} onChange={(e) => { setJobData({ ...jobData, category: e.target.value }) }}>
                                             <option value="" disabled selected>select</option>
                                             <option value="information-technology">Information Technology</option>
@@ -163,7 +165,7 @@ function EditPost({ job }) {
                                     </label>
                                 </div>
                                 <div className='col-md-6 mb-3 '>
-                                    <label className='w-100' htmlFor="name">City
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>City
                                         <input type="text" placeholder='Enter City' className='form-control mt-2' id='name' value={jobData.city} onChange={(e) => { setJobData({ ...jobData, city: e.target.value }) }} />
                                     </label>
                                 </div>
@@ -173,7 +175,7 @@ function EditPost({ job }) {
                                     </label>
                                 </div>
                                 <div className='col-md-6 mb-3 '>
-                                    <label className='w-100' htmlFor="name">Job type
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>Job type
                                         <select className='form-control outline-info mt-2' type="text" placeholder='type' value={jobData.jobType} onChange={(e) => { setJobData({ ...jobData, jobType: e.target.value }) }}>
                                             <option disabled selected value=" ">select value</option>
                                             <option value="Full-time">Full time</option>
@@ -185,7 +187,7 @@ function EditPost({ job }) {
                                     </label>
                                 </div>
                                 <div className='col-md-6 mb-3 '>
-                                    <label className='w-100' htmlFor="name">Experience
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>Experience
                                         <select className='form-control outline-info' type="text" placeholder='Location' value={jobData.experience} onChange={(e) => { setJobData({ ...jobData, experience: e.target.value }) }}>
                                             <option disabled selected value="">Experience</option>
                                             <option value="fresher">Fresher</option>
@@ -196,12 +198,12 @@ function EditPost({ job }) {
                                     </label>
                                 </div>
                                 <div className='col-md-6 mb-3 '>
-                                    <label className='w-100' htmlFor="name">Educational Qualification
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>Educational Qualification
                                         <input type="text" placeholder='Enter required qualification' className='form-control mt-2' id='name' value={jobData.education} onChange={(e) => { setJobData({ ...jobData, education: e.target.value }) }} />
                                     </label>
                                 </div>
                                 <div className='col-md-6 mb-3 '>
-                                    <label className='w-100' htmlFor="name">Location
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>Location
                                         <select className='form-control outline-info' type="text" placeholder='Location' value={jobData.location} onChange={(e) => { setJobData({ ...jobData, location: e.target.value }) }}>
                                             <option disabled selected value=" ">select</option>
                                             <option value="onsite">onsite</option>
@@ -216,12 +218,12 @@ function EditPost({ job }) {
                                     </label>
                                 </div>
                                 <div className='col-md-6 mb-3 '>
-                                    <label className='w-100' htmlFor="name">Last Date
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>Last Date
                                         <input type="date" className='form-control mt-2' id='name' value={jobData.lastDate} onChange={(e) => { setJobData({ ...jobData, lastDate: e.target.value }) }} />
                                     </label>
                                 </div>
                                 <div className='col-md-12 mb-2 '>
-                                    <label className='w-100' htmlFor="name">Job Description
+                                    <label className='w-100' htmlFor="name"><span className='text-danger '>*</span>Job Description
                                         <textarea placeholder='Describe....' type="text" className='form-control mt-2' id='name' value={jobData.description} onChange={(e) => { setJobData({ ...jobData, description: e.target.value }) }} />
                                     </label>
                                 </div>

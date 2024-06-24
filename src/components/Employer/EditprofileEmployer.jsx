@@ -15,11 +15,11 @@ function EditprofileEmployer() {
   //context
   const { setEditResponse } = useContext(editAdminContext)
   const userData = useSelector((state) => state.adminProfileReducer)
- // console.log(userData);
+  // console.log(userData);
 
 
   const [adminData, setAdmindata] = useState({
-    id:"",
+    id: "",
     username: "",
     email: "",
     industry: "",
@@ -30,13 +30,13 @@ function EditprofileEmployer() {
     documents: "",
     companyImage: "",
     verification: false
-   })
-  
+  })
+
   const [companypicture, setcompanyPicture] = useState()
   const [preview, setpreview] = useState("")
   //console.log(adminData);
 
-  useEffect(()=>{
+  useEffect(() => {
     setAdmindata({
       ...adminData,
       id: userData?._id,
@@ -47,9 +47,10 @@ function EditprofileEmployer() {
       address: userData?.address,
       country: userData?.country,
       about: userData?.about,
-      verification: userData?.verification})
-      setcompanyPicture(userData?.companyImage)
-  },[userData])
+      verification: userData?.verification
+    })
+    setcompanyPicture(userData?.companyImage)
+  }, [userData])
 
 
   //modal controls
@@ -167,54 +168,85 @@ function EditprofileEmployer() {
           <div className=' w-100'>
             <div className='row d-flex justify-content-center align-items-center' >
 
-              <div className='d-flex justify-content-center align-items-center mb-3'>
-                <label htmlFor="profileImage">
-                  <input style={{ display: "none" }} type="file" id='profileImage' onChange={(e) => setAdmindata({ ...adminData, companyImage: e.target.files[0] })} />
+              <div>
+                <div className='d-flex justify-content-center align-items-center mb-3'>
+                  <label htmlFor="profileImage">
+                    <input style={{ display: "none" }} type="file" id='profileImage'
+                      onChange={(e) => setAdmindata({ ...adminData, companyImage: e.target.files[0] })} />
 
-                  {companypicture == "" ? <img src={preview ? preview : "https://img.freepik.com/free-vector/colorful-letter-d-arrow-icon-logo-design_474888-2837.jpg?size=626&ext=jpg&ga=GA1.1.2038351387.1715060407&semt=ais_user"} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} /> :
+                    {companypicture == "" ?
+                      <img src={preview ? preview : "https://img.freepik.com/free-vector/colorful-letter-d-arrow-icon-logo-design_474888-2837.jpg?size=626&ext=jpg&ga=GA1.1.2038351387.1715060407&semt=ais_user"} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} /> :
 
-                    <img src={preview ? preview : `${baseUrl}/uploads/${companypicture}`} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} />}
+
+                      <img src={preview ? preview : `${baseUrl}/uploads/${companypicture}`} alt="" width={'100px'} height={'100px'}
+                       style={{ borderRadius: "50%" }} />}
+                  </label>
+                </div>
+
+                <p className=' d-flex justify-content-center align-items-center mb-2'>
+                  <span className='text-danger'>*</span>Profile image
+                </p>
+
+              </div>
+
+              <div className='col-md-5 mb-2 mt-2'>
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Company Name
+                  <input type="text" className='form-control' id='name' value={adminData.username}
+                    onChange={(e) => setAdmindata({ ...adminData, username: e.target.value })} />
                 </label>
               </div>
 
+
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Company Name
-                  <input type="text" className='form-control' id='name' value={adminData.username} onChange={(e) => setAdmindata({ ...adminData, username: e.target.value })} />
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Industry
+                  <input type="text" className='form-control' id='name' value={adminData.industry}
+                    onChange={(e) => setAdmindata({ ...adminData, industry: e.target.value })} />
+                </label>
+              </div>
+
+
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Website
+                  <input type="text" className='form-control' id='name' value={adminData.website}
+                    onChange={(e) => setAdmindata({ ...adminData, website: e.target.value })} />
+                </label>
+              </div>
+
+
+              <div className='col-md-5 mb-2 '>
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>E-mail
+                  <input type="text" className='form-control' id='name' value={adminData.email}
+                    onChange={(e) => setAdmindata({ ...adminData, email: e.target.value })} />
                 </label>
               </div>
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Industry
-                  <input type="text" className='form-control' id='name' value={adminData.industry} onChange={(e) => setAdmindata({ ...adminData, industry: e.target.value })} />
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Address
+                  <textarea type="text" className='form-control' id='name' value={adminData.address}
+                    onChange={(e) => setAdmindata({ ...adminData, address: e.target.value })} />
                 </label>
               </div>
+
+
               <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Website
-                  <input type="text" className='form-control' id='name' value={adminData.website} onChange={(e) => setAdmindata({ ...adminData, website: e.target.value })} />
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Country
+                  <input type="text" className='form-control' id='name' value={adminData.country}
+                    onChange={(e) => setAdmindata({ ...adminData, country: e.target.value })} />
                 </label>
               </div>
-              <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">E-mail
-                  <input type="text" className='form-control' id='name' value={adminData.email} onChange={(e) => setAdmindata({ ...adminData, email: e.target.value })} />
-                </label>
-              </div>
-              <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Address
-                  <textarea type="text" className='form-control' id='name' value={adminData.address} onChange={(e) => setAdmindata({ ...adminData, address: e.target.value })} />
-                </label>
-              </div>
-              <div className='col-md-5 mb-2 '>
-                <label className='w-100' htmlFor="name">Country
-                  <input type="text" className='form-control' id='name' value={adminData.country} onChange={(e) => setAdmindata({ ...adminData, country: e.target.value })} />
-                </label>
-              </div>
+
+
               <div className='col-md-10 mb-2 '>
-                <label className='w-100' htmlFor="name">About
-                  <textarea type="text" className='form-control' id='name' value={adminData.about} onChange={(e) => setAdmindata({ ...adminData, about: e.target.value })} />
+                <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>About
+                  <textarea type="text" className='form-control' id='name' value={adminData.about}
+                    onChange={(e) => setAdmindata({ ...adminData, about: e.target.value })} />
                 </label>
               </div>
+
+
               <div className='col-md-10 mb-2 '>
                 <label className='w-100' htmlFor="name">Upload documents for verification
-                  <input type="file" className='ms-4' onChange={(e) => setAdmindata({ ...adminData, documents: e.target.files[0] })} />
+                  <input type="file" className='ms-4'
+                    onChange={(e) => setAdmindata({ ...adminData, documents: e.target.files[0] })} />
                 </label>
               </div>
 

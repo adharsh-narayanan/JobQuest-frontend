@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -14,14 +14,17 @@ import UserHeader from '../components/Employee/UserHeader';
 import FooterFile from '../components/General/FooterFile';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { Link } from 'react-router-dom';
-import ChangePassword from '../components/General/ChangePassword';
 import PasswordChange from '../components/Employee/PasswordChange';
+import { passwordChangeContext } from '../context/contextApi';
 
 
 function Employee() {
   const [currentPage, setCurrentPage] = useState("profile")
+  const{ischangePassword,setIsChangePassword}=useContext(passwordChangeContext)
+useEffect(()=>{
+  setIsChangePassword(false)
+  setCurrentPage("profile")
+},[ischangePassword])
 
   //to make it responsive
   const screenSize = useMediaQuery({ minWidth: 1024 })

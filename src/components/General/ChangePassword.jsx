@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { changeAdminPasswordApi } from '../../services/Api'
 import { ToastContainer, toast } from 'react-toastify'
+import { passwordChangeContext } from '../../context/contextApi'
 
 function ChangePassword({adminData}) {
+    const{setIsChangePassword}=useContext(passwordChangeContext)
+
     //console.log(adminData.userid);
     const [data, setData] = useState({
         id: "",
@@ -65,6 +68,9 @@ function ChangePassword({adminData}) {
                 console.log(result);
                 if (result.status == 200) {
                     toast.success('Password Updated')
+                    setTimeout(()=>{
+                        setIsChangePassword(true)
+                       },2000)
 
                     setData({
                         id: "",

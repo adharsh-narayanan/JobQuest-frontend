@@ -36,7 +36,7 @@ function EmployeeProfile() {
       }
       const result = await getUserProfileApi(reqHeader)
       if(result.status==200){
-        console.log(result);
+       // console.log(result);
       setUser(result.data)
       sessionStorage.setItem("userData",JSON.stringify(result.data))
 

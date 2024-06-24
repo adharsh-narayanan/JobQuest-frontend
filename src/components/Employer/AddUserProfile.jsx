@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useState } from 'react';
-import { addAdminProfile,  } from '../../services/Api';
+import { addAdminProfile, } from '../../services/Api';
 import { baseUrl } from '../../services/baseUrl';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,7 +25,7 @@ function AddUserProfile() {
     })
     const [update, setupdate] = useState(false)
     // console.log(adminData);
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     const [companypicture, setcompanyPicture] = useState("")
     const [preview, setpreview] = useState("")
@@ -96,49 +96,52 @@ function AddUserProfile() {
     }
     return (
         <div className=' w-100'>
-            <AdminHeader/>
+            <AdminHeader />
             <div className='row d-flex justify-content-center align-items-center' >
 
-                <div className='d-flex justify-content-center align-items-center mb-3'>
-                    <label htmlFor="profileImage">
-                        <input style={{ display: "none" }} type="file" id='profileImage' onChange={(e) => setAdmindata({ ...adminData, companyImage: e.target.files[0] })} />
-                       <img src={preview ? preview : "https://img.freepik.com/free-vector/colorful-letter-d-arrow-icon-logo-design_474888-2837.jpg?size=626&ext=jpg&ga=GA1.1.2038351387.1715060407&semt=ais_user"} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} /> 
+                <div>
+                    <div className='d-flex justify-content-center align-items-center mb-3'>
+                        <label htmlFor="profileImage">
+                            <input style={{ display: "none" }} type="file" id='profileImage' onChange={(e) => setAdmindata({ ...adminData, companyImage: e.target.files[0] })} />
+                            <img src={preview ? preview : "https://img.freepik.com/free-vector/colorful-letter-d-arrow-icon-logo-design_474888-2837.jpg?size=626&ext=jpg&ga=GA1.1.2038351387.1715060407&semt=ais_user"} alt="" width={'150px'} height={'150px'} style={{ borderRadius: "50%" }} />
 
-                    </label>
+                        </label>
+                    </div>
+                    <p className=' d-flex justify-content-center align-items-center mb-2'> <span className='text-danger'>*</span>Profile image </p>
                 </div>
 
                 <div className='col-md-5 mb-2 '>
-                    <label className='w-100' htmlFor="name">Company Name
+                    <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Company Name
                         <input type="text" className='form-control' id='name' value={adminData.username} onChange={(e) => setAdmindata({ ...adminData, username: e.target.value })} />
                     </label>
                 </div>
                 <div className='col-md-5 mb-2 '>
-                    <label className='w-100' htmlFor="name">Industry
+                    <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Industry
                         <input type="text" className='form-control' id='name' value={adminData.industry} onChange={(e) => setAdmindata({ ...adminData, industry: e.target.value })} />
                     </label>
                 </div>
                 <div className='col-md-5 mb-2 '>
-                    <label className='w-100' htmlFor="name">Website
+                    <label className='w-100' htmlFor="name"> <span className='text-danger'>*</span>Website
                         <input type="text" className='form-control' id='name' value={adminData.website} onChange={(e) => setAdmindata({ ...adminData, website: e.target.value })} />
                     </label>
                 </div>
                 <div className='col-md-5 mb-2 '>
-                    <label className='w-100' htmlFor="name">E-mail
+                    <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>E-mail
                         <input type="text" className='form-control' id='name' value={adminData.email} onChange={(e) => setAdmindata({ ...adminData, email: e.target.value })} />
                     </label>
                 </div>
                 <div className='col-md-5 mb-2 '>
-                    <label className='w-100' htmlFor="name">Address
+                    <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Address
                         <textarea type="text" className='form-control' id='name' value={adminData.address} onChange={(e) => setAdmindata({ ...adminData, address: e.target.value })} />
                     </label>
                 </div>
                 <div className='col-md-5 mb-2 '>
-                    <label className='w-100' htmlFor="name">Country
+                    <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>Country
                         <input type="text" className='form-control' id='name' value={adminData.country} onChange={(e) => setAdmindata({ ...adminData, country: e.target.value })} />
                     </label>
                 </div>
                 <div className='col-md-10 mb-2 '>
-                    <label className='w-100' htmlFor="name">About
+                    <label className='w-100' htmlFor="name"><span className='text-danger'>*</span>About
                         <textarea type="text" className='form-control' id='name' value={adminData.about} onChange={(e) => setAdmindata({ ...adminData, about: e.target.value })} />
                     </label>
                 </div>
@@ -149,7 +152,7 @@ function AddUserProfile() {
                 </div>
 
                 <div className='py-5 text-center'>
-                    <div className='btn btn-success' onClick={((e)=>handleAddProfile(e))} >Submit </div>
+                    <div className='btn btn-success' onClick={((e) => handleAddProfile(e))} >Submit </div>
                 </div>
 
 

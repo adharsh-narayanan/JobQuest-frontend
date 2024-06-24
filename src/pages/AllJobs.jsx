@@ -14,6 +14,7 @@ function AllJobs() {
   // console.log(jobs);
   const [token, setToken] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
+  const[reset,setReset]=useState(false)
 
 
   //search key
@@ -29,7 +30,7 @@ function AllJobs() {
   //const search = Object.values(searchKey).join('');
 
   const search = new URLSearchParams(searchKey).toString();
-  console.log(search);
+  //console.log(search);
 
 
 
@@ -47,7 +48,9 @@ function AllJobs() {
     if (token) {
       getAlljobs()
     }
-  }, [token,])
+    setReset(false)
+
+  }, [token,reset])
 
   const getAlljobs = async () => {
 
@@ -93,6 +96,19 @@ function AllJobs() {
     }
 
 
+  }
+
+  //to reset
+  const handleReset=()=>{
+    setSearchKey({
+      search: "",
+      category: "",
+      jobType: "",
+      location: "",
+      experience: ""
+    })
+    setReset(true)
+    
   }
 
 
@@ -195,6 +211,8 @@ function AllJobs() {
             {/* ----------------------------------------------------------------------------------------------------------------------------------------- */}
             <div className="">
               <div className='btn btn-dark' onClick={(e) => handleSearch(e)}>  Find Jobs</div>
+              <div className='btn btn-warning ms-2' onClick={ handleReset}>  Reset</div>
+
             </div>
 
           </div>

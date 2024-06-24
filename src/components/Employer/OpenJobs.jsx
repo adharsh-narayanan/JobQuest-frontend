@@ -11,7 +11,8 @@ import Pagination from 'react-bootstrap/Pagination';
 
 
 function OpenJobs() {
-    const { addjobresponse } = useContext(addjobContext)
+    const { addjobresponse} = useContext(addjobContext)
+
     const { editJobResponse } = useContext(editJobContext)
     const [jobs, setJobs] = useState([])
     const [currentPage, setCurrentPage] = useState(1)

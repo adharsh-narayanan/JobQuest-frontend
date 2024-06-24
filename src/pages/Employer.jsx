@@ -10,7 +10,7 @@ import OpenJobs from '../components/Employer/OpenJobs';
 import SavedCandidates from '../components/Employer/SavedCandidates';
 import ChangePassword from '../components/General/ChangePassword';
 import { baseUrl } from '../services/baseUrl';
-import { editAdminContext } from '../context/contextApi';
+import { addjobContext, editAdminContext, passwordChangeContext } from '../context/contextApi';
 import { getAdminProfile } from '../services/Api';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
@@ -22,12 +22,15 @@ import AdminHeader from '../components/Employer/AdminHeader';
 
 function Employer() {
   //context api
-  
+  const { ischangePassword, setIsChangePassword } = useContext(passwordChangeContext)
+
   const { editResponse } = useContext(editAdminContext)
+  const { addjobresponse,setaddjobresponse} = useContext(addjobContext)
+
   const [adminData, setAdmindata] = useState({})
   const [currentPage, setCurrentPage] = useState("profile")
   const [token, setToken] = useState("")
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
 
@@ -39,12 +42,18 @@ function Employer() {
 
   useEffect(() => {
     getAdminData()
-  }, [token,editResponse])
+  }, [token, editResponse])
 
   //sending admindata to editadmin profile component
   useEffect(() => {
     dispatch(adminprofile(adminData))
   }, [adminData])
+
+  useEffect(() => {
+    setIsChangePassword(false)
+    setaddjobresponse(false)
+    setCurrentPage("profile")
+  }, [ischangePassword,addjobresponse])
 
 
   //getting profile
@@ -55,11 +64,11 @@ function Employer() {
         "Authorization": `Bearer ${token}`
       }
       const result = await getAdminProfile(reqHeader)
-      if(result.status==200){
-       // console.log(result);
+      if (result.status == 200) {
+        // console.log(result);
         setAdmindata(result.data)
         sessionStorage.setItem("userProfile", JSON.stringify(result.data))
-      }else{
+      } else {
         toast.warning(result.response.data)
         navigate('/admin/add-profile')
       }

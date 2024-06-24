@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { changeUserPasswordApi } from '../../services/Api'
 import { ToastContainer, toast } from 'react-toastify'
+import { passwordChangeContext } from '../../context/contextApi'
 
 function PasswordChange() {
+    const{setIsChangePassword}=useContext(passwordChangeContext)
     const [data, setData] = useState({
         id: "",
         oldPassword: "",
@@ -67,6 +69,9 @@ function PasswordChange() {
                 console.log(result);
                 if (result.status == 200) {
                     toast.success('Password Updated')
+                   setTimeout(()=>{
+                    setIsChangePassword(true)
+                   },2000)
 
                     setData({
                         id: "",
@@ -90,7 +95,7 @@ function PasswordChange() {
         }
     }
 
-    console.log(data);
+    //console.log(data);
   return (
     <>
     <div className='container-fluid mb-5 pb-5 w-100 shadow rounded' style={{ backgroundColor: 'white', color: 'black' }}>
