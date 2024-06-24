@@ -119,7 +119,7 @@ function EmployerLogin({ signup }) {
             console.log(result);
             if (result.status == 200) {
                 const existingUser = {
-                    userid:result.data.existingUser._id,
+                    userid: result.data.existingUser._id,
                     username: result.data.existingUser.username,
                     email: result.data.existingUser.email,
                 };
@@ -195,6 +195,7 @@ function EmployerLogin({ signup }) {
                         {SignUp && <div className='mb-4 '>
                             <TextField
                                 label="Company Name" name='companyName'
+                                value={admindata.username || ""}
                                 id="outlined-start-adornment"
                                 sx={{ width: '100%' }}
                                 InputProps={{
@@ -207,6 +208,7 @@ function EmployerLogin({ signup }) {
 
                         <div className='mb-4 '>
                             <TextField
+                                value={admindata.email || ""}
                                 label="E-mail" name='email'
                                 id="outlined-start-adornment"
                                 sx={{ width: '100%' }}
@@ -220,6 +222,8 @@ function EmployerLogin({ signup }) {
 
                         <div className='mb-4 '>
                             <TextField
+                                value={admindata.password || ""}
+
                                 type="password"
                                 label="Password"
                                 name='password'
@@ -237,6 +241,8 @@ function EmployerLogin({ signup }) {
                         {SignUp && <div className='mb-4 '>
                             <TextField
                                 type="password" label="Confirm password" name='confirmPassword'
+                                value={admindata.cpassword || ""}
+
                                 id="outlined-start-adornment"
                                 sx={{ width: '100%' }}
                                 InputProps={{
