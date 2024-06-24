@@ -132,10 +132,11 @@ function Jobcards({ jobs }) {
 
     //apply a job
     const applyJob = async () => {
+        if (token) {
         if (Object.keys(user).length > 0) {
             const { id } = jobsData
             console.log(id);
-            if (token) {
+            
                 const reqHeader = {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
@@ -152,11 +153,13 @@ function Jobcards({ jobs }) {
 
                 }
             }else{
-                toast.warning('please login to apply')
+                toast.info('please complete your profile to apply job')     
+
             }
         }
         else {
-            toast.info('please complete your profile to apply job')         
+            toast.warning('please login to apply')
+    
         }
 
     }
