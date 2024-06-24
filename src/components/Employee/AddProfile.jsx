@@ -86,6 +86,7 @@ function AddProfile() {
                 
                 setTimeout(()=>{
                     seteditUserProfile(true)
+                    navigate('/user/dashboard')
                 },2000)
 
             }
