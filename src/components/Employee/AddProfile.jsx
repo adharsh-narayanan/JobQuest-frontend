@@ -85,10 +85,10 @@ function AddProfile() {
                 toast.success('Profile Updated Succesfully')
                 seteditUserProfile(true)
                 
-                setTimeout(() => {
+             /*    setTimeout(() => {
                     navigate('/user-dashboard')
 
-                }, 2000)
+                }, 2000) */
             }
             else {
                 //console.log(result.response)

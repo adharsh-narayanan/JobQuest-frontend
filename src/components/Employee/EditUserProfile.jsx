@@ -68,7 +68,7 @@ const{seteditUserProfile}=useContext(userProfileContext)
     e.preventDefault()
     const{id,username,email,position,phone,country,city,postCode,gender,dateOfBirth,linkdin,resume,userImage}=userData
 
-    if(!username||!email||!position||!phone||!country||!city||!postCode||!gender||!dateOfBirth||!linkdin){
+    if(!username||!email||!position||!phone||!country||!city||!postCode||!gender||!dateOfBirth){
       toast.warning("completely fill profile")
 
     }
